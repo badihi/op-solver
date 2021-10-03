@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM node:14-alpine
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 
@@ -23,10 +23,12 @@ RUN set -x \
     && make install \
   )
 
-# Download OPLib
-WORKDIR /
-RUN set -x \
-  && git clone --depth 1  https://github.com/bcamath-ds/OPLib
+WORKDIR /app
+COPY node/package*.json ./
+RUN npm install
 
-WORKDIR /tmp
-ENTRYPOINT ["/usr/local/bin/op-solver"]
+COPY node/* ./
+
+EXPOSE 80
+
+CMD [ "node", "index.js" ]

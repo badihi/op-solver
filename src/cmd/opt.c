@@ -168,8 +168,8 @@ parse_opt_args_(int argc, char *argv[], struct cmd_args *cmd_args)
                 printf("No solution file specified\n");
                 return 1;
             }
-            cmd_args->stats_file = argv[k];
-            // strcpy(cmd_args->sol_file, argv[k]);
+            // cmd_args->stats_file = argv[k];
+            cmd_args->sol_file = argv[k];
         }
         else if ((argv[k][0] == '-' && argv[k][1] == '-' && argv[k][2] == 'o' &&
                   argv[k][3] == 'p'))
